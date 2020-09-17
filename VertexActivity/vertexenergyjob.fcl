@@ -1,0 +1,68 @@
+#include "services.fcl"
+#include "VertexEnergy.fcl"
+#include "BackTracker.fcl"
+
+#process_name: "FancyScienceAlg"
+process_name: "VertexActivityAlg"
+
+services:
+{
+  # Uncomment the services you'd like to include
+  # MemoryTracker:         {}
+  # message:               @local::standard_out
+  # RandomNumberGenerator: {}
+  #scheduler:             { wantTracer: false wantSummary: true }
+  TFileService:          { fileName: "VertexActivity.root" closeFileFast: false }
+  # TimeTracker:           {}
+  @table::standard_services
+}
+services.BackTracker: @local::standard_backtracker
+
+source:
+{
+  module_type: RootInput
+  maxEvents:  -1
+}
+
+outputs:
+{
+#  out1:
+#  {
+#   module_type: RootOutput
+#   fileName:    "output.root" # default file name, can override from commandline with -o or --output
+#   fastCloning: false
+#  }
+}
+
+# Define and configure some modules to do work on each event.
+# First modules are defined; they are scheduled later.
+# Modules are grouped by type.
+physics:
+{
+  producers:
+  {
+    vertexactivity: @local::standard_vertexenergy
+  }
+#  analyzers:
+#  {
+#    analyzer1: @local::standard_fancyscience
+#  }
+
+
+  # Define the path for producer and filter modules, order matters.
+  reco: [ vertexactivity ]
+
+  # Define the path for the analyzer modules, order does not matter.
+#   ana: [ analyzer1 ]
+
+  # Define the output stream, there could be more than one if using filters
+  #stream1:  [ ana ]
+
+  # trigger_paths is a keyword and contains the paths that modify the art::Event,
+  # ie. filters and producers
+  trigger_paths: [ reco ]
+
+  # end_paths is a keyword and contains the paths that do not modify the art::Event,
+  # ie. analyzers and output streams.  these all run simultaneously
+  #end_paths:     [ stream1 ]
+}

@@ -1,0 +1,11 @@
+BEGIN_PROLOG
+
+# convention is all lowercase here
+standard_vertexenergy:
+{
+  module_type:  "VertexEnergy"
+
+  RawDataLabel: "daq"
+}
+
+END_PROLOG
