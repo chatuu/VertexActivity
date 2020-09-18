@@ -4,6 +4,48 @@ BEGIN_PROLOG
 standard_vertexenergy:
 {
   module_type:  "VertexEnergy"
+  SlicerLabel: "slicer"
+  ElasticArmsLabel: "elasticarmshs"
+  CellHitLabel: "calhit"
+  volume1:
+  {
+      xMin: -10
+      xMax:  10
+      yMin: -10
+      yMax:  10
+      zMin: -10
+      zMax:  10
+  }
+
+  volume2:
+  {
+      xMin: -20
+      xMax:  20
+      yMin: -20
+      yMax:  20
+      zMin: -20
+      zMax:  20
+  }
+
+  volume3:
+  {
+      xMin: -30
+      xMax:  30
+      yMin: -30
+      yMax:  30
+      zMin: -30
+      zMax:  30
+  }
+
+  volume4:
+  {
+      xMin: -40
+      xMax:  40
+      yMin: -40
+      yMax:  40
+      zMin: -40
+      zMax:  40
+  }
 
   RawDataLabel: "daq"
 }
